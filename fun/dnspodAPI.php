@@ -18,12 +18,11 @@ function getRecordInfo(){
     $url = 'https://dnsapi.cn/Record.List';
     $params = $GLOBALS['curl_common_params'];
     $params['domain_id'] = $domainId;
-    $params['keyword'] = $GLOBALS['domain'];
     $re = curl_post($url, $params);
     $re = json_decode($re, TRUE);
     if($re['status']['code'] == 1){
         foreach($re['records'] as $record){
-            if($record['name'] == $GLOBALS['domain']){
+            if($record['name'] == $GLOBALS['edit_record_name']){
                 return ['status' => true, 'record_id' => $record['id'], 'ip' => $record['value']];
             }
         }
@@ -63,7 +62,7 @@ function setRecord($record_id = 0, $ip = ''){
     $params['domain_id'] = $domainId;
     $params['record_id'] = $record_id;
     $params['value'] = $ip;
-    $params['sub_domain'] = $GLOBALS['domain'];
+    $params['sub_domain'] = $GLOBALS['edit_record_name'];
     $params['record_type'] = 'A';
     $params['record_line'] = '默认';
     $re = curl_post($url, $params);

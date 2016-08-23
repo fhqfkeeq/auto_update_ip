@@ -13,5 +13,6 @@ $GLOBALS = [
         'lang' => 'cn',
         'error_on_empty' => 'yes',
     ],
-    'domain' => 'xxx.com',
+    'domain' => 'xxx.com',  //注意,请填写主域名,如www.abc.com 填写  abc.com,
+    'edit_record_name' => '@',
 ];
